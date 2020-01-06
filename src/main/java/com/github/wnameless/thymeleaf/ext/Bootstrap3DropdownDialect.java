@@ -21,16 +21,16 @@ import java.util.Set;
 import org.thymeleaf.dialect.AbstractProcessorDialect;
 import org.thymeleaf.processor.IProcessor;
 
-public class DropdownDialect extends AbstractProcessorDialect {
+public class Bootstrap3DropdownDialect extends AbstractProcessorDialect {
 
-  public DropdownDialect() {
-    super("Boostrap Dropdown Dialect", "bs", 1000);
+  public Bootstrap3DropdownDialect() {
+    super("Boostrap 3 Dropdown Dialect", "bs3", 1000);
   }
 
   public Set<IProcessor> getProcessors(final String dialectPrefix) {
     final Set<IProcessor> processors = new HashSet<IProcessor>();
-    processors.add(new DropdownProcessor(dialectPrefix, true));
-    processors.add(new DropdownItemProcessor(dialectPrefix, true));
+    processors.add(new Bootstrap3DropdownProcessor(dialectPrefix, true));
+    processors.add(new Bootstrap3DropdownItemProcessor(dialectPrefix, true));
     return processors;
   }
 

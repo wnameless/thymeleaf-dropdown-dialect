@@ -18,14 +18,17 @@ package com.github.wnameless.thymeleaf.ext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.github.wnameless.thymeleaf.ext.DropdownDialect;
-
 @Configuration
 public class AppConfig {
 
   @Bean
-  public DropdownDialect optionDropdownDialect() {
-    return new DropdownDialect();
+  public Bootstrap3DropdownDialect bootstrap3DropdownDialect() {
+    return new Bootstrap3DropdownDialect();
+  }
+
+  @Bean
+  public Bootstrap4DropdownDialect bootstrap4DropdownDialect() {
+    return new Bootstrap4DropdownDialect();
   }
 
 }

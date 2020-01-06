@@ -20,28 +20,16 @@ import java.util.Map;
 
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.model.AttributeValueQuotes;
-import org.thymeleaf.model.ICDATASection;
-import org.thymeleaf.model.ICloseElementTag;
-import org.thymeleaf.model.IComment;
-import org.thymeleaf.model.IDocType;
 import org.thymeleaf.model.IModel;
 import org.thymeleaf.model.IModelFactory;
-import org.thymeleaf.model.IModelVisitor;
-import org.thymeleaf.model.IOpenElementTag;
-import org.thymeleaf.model.IProcessingInstruction;
-import org.thymeleaf.model.IStandaloneElementTag;
-import org.thymeleaf.model.ITemplateEnd;
-import org.thymeleaf.model.ITemplateEvent;
-import org.thymeleaf.model.ITemplateStart;
-import org.thymeleaf.model.IText;
-import org.thymeleaf.model.IXMLDeclaration;
 import org.thymeleaf.processor.element.AbstractElementModelProcessor;
 import org.thymeleaf.processor.element.IElementModelStructureHandler;
 import org.thymeleaf.templatemode.TemplateMode;
 
-public class DropdownProcessor extends AbstractElementModelProcessor {
+public class Bootstrap4DropdownProcessor extends AbstractElementModelProcessor {
 
-  public DropdownProcessor(String dialectPrefix, boolean prefixElementName) {
+  public Bootstrap4DropdownProcessor(String dialectPrefix,
+      boolean prefixElementName) {
     super(TemplateMode.HTML, dialectPrefix, "dropdown", prefixElementName, null,
         false, 1000);
   }
@@ -51,7 +39,8 @@ public class DropdownProcessor extends AbstractElementModelProcessor {
       IElementModelStructureHandler structureHandler) {
     IModelFactory modelFactory = context.getModelFactory();
 
-    Map<String, String> originAttr = getAttributeMap(model.get(0));
+    Map<String, String> originAttr =
+        ThymeleafDialectUtils.getAttributeMap(model.get(0));
     boolean bsDropup = originAttr.containsKey("bs:dropup");
     originAttr.remove("bs:dropup");
     boolean bsDropright = originAttr.containsKey("bs:dropright");
@@ -88,19 +77,16 @@ public class DropdownProcessor extends AbstractElementModelProcessor {
         modelFactory.createOpenElementTag("div", "class", divClass));
 
     int idx = 1;
-    model.insert(idx, modelFactory.createOpenElementTag("button", attr,
+    model.insert(idx++, modelFactory.createOpenElementTag("button", attr,
         AttributeValueQuotes.DOUBLE, false));
-    idx++;
 
     if (bsIcon != null) {
-      model.insert(idx, modelFactory.createStandaloneElementTag("span", "class",
-          bsIcon, false, false));
-      idx++;
+      model.insert(idx++, modelFactory.createStandaloneElementTag("span",
+          "class", bsIcon, false, false));
     }
 
     if (bsText != null) {
-      model.insert(idx, modelFactory.createText(bsText));
-      idx++;
+      model.insert(idx++, modelFactory.createText(bsText));
     }
 
     if (bsIcon == null && bsText == null) {
@@ -109,70 +95,20 @@ public class DropdownProcessor extends AbstractElementModelProcessor {
       attr.put("height", "16");
       attr.put("src",
           "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMjQgMTMuNjE2di0zLjIzMmMtMS42NTEtLjU4Ny0yLjY5NC0uNzUyLTMuMjE5LTIuMDE5di0uMDAxYy0uNTI3LTEuMjcxLjEtMi4xMzQuODQ3LTMuNzA3bC0yLjI4NS0yLjI4NWMtMS41NjEuNzQyLTIuNDMzIDEuMzc1LTMuNzA3Ljg0N2gtLjAwMWMtMS4yNjktLjUyNi0xLjQzNS0xLjU3Ni0yLjAxOS0zLjIxOWgtMy4yMzJjLS41ODIgMS42MzUtLjc0OSAyLjY5Mi0yLjAxOSAzLjIxOWgtLjAwMWMtMS4yNzEuNTI4LTIuMTMyLS4wOTgtMy43MDctLjg0N2wtMi4yODUgMi4yODVjLjc0NSAxLjU2OCAxLjM3NSAyLjQzNC44NDcgMy43MDctLjUyNyAxLjI3MS0xLjU4NCAxLjQzOC0zLjIxOSAyLjAydjMuMjMyYzEuNjMyLjU4IDIuNjkyLjc0OSAzLjIxOSAyLjAxOS41MyAxLjI4Mi0uMTE0IDIuMTY2LS44NDcgMy43MDdsMi4yODUgMi4yODZjMS41NjItLjc0MyAyLjQzNC0xLjM3NSAzLjcwNy0uODQ3aC4wMDFjMS4yNy41MjYgMS40MzYgMS41NzkgMi4wMTkgMy4yMTloMy4yMzJjLjU4Mi0xLjYzNi43NS0yLjY5IDIuMDI3LTMuMjIyaC4wMDFjMS4yNjItLjUyNCAyLjEyLjEwMSAzLjY5OC44NTFsMi4yODUtMi4yODZjLS43NDQtMS41NjMtMS4zNzUtMi40MzMtLjg0OC0zLjcwNi41MjctMS4yNzEgMS41ODgtMS40NCAzLjIyMS0yLjAyMXptLTEyIDIuMzg0Yy0yLjIwOSAwLTQtMS43OTEtNC00czEuNzkxLTQgNC00IDQgMS43OTEgNCA0LTEuNzkxIDQtNCA0eiIvPjwvc3ZnPg==");
-      model.insert(idx, modelFactory.createStandaloneElementTag("img", attr,
+      model.insert(idx++, modelFactory.createStandaloneElementTag("img", attr,
           AttributeValueQuotes.DOUBLE, false, true));
-      idx++;
     }
 
-    model.insert(idx, modelFactory.createCloseElementTag("button"));
-    idx++;
+    model.insert(idx++, modelFactory.createCloseElementTag("button"));
 
     attr = new LinkedHashMap<>();
     attr.put("class", "dropdown-menu");
     attr.put("aria-labelledby", id);
-    model.insert(idx, modelFactory.createOpenElementTag("div", attr,
+    model.insert(idx++, modelFactory.createOpenElementTag("div", attr,
         AttributeValueQuotes.DOUBLE, false));
-    idx++;
 
     model.insert(model.size() - 1, modelFactory.createCloseElementTag("div"));
     model.replace(model.size() - 1, modelFactory.createCloseElementTag("div"));
-  }
-
-  private Map<String, String> getAttributeMap(ITemplateEvent event) {
-    final Map<String, String> attr = new LinkedHashMap<>();
-
-    event.accept(new IModelVisitor() {
-
-      @Override
-      public void visit(ITemplateStart templateStart) {}
-
-      @Override
-      public void visit(ITemplateEnd templateEnd) {}
-
-      @Override
-      public void visit(IXMLDeclaration xmlDeclaration) {}
-
-      @Override
-      public void visit(IDocType docType) {}
-
-      @Override
-      public void visit(ICDATASection cdataSection) {}
-
-      @Override
-      public void visit(IComment comment) {}
-
-      @Override
-      public void visit(IText text) {}
-
-      @Override
-      public void visit(IStandaloneElementTag standaloneElementTag) {
-        attr.putAll(standaloneElementTag.getAttributeMap());
-      }
-
-      @Override
-      public void visit(IOpenElementTag openElementTag) {
-        attr.putAll(openElementTag.getAttributeMap());
-      }
-
-      @Override
-      public void visit(ICloseElementTag closeElementTag) {}
-
-      @Override
-      public void visit(IProcessingInstruction processingInstruction) {}
-
-    });
-
-    return attr;
   }
 
 }

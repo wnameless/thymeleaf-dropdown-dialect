@@ -22,9 +22,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ThymeleafController {
 
-  @GetMapping("/")
-  String index(Model model) {
-    return "index";
+  @GetMapping("/bs3")
+  String bs3(Model model) {
+    return "bs3";
+  }
+
+  @GetMapping("/bs4")
+  String bs4(Model model) {
+    return "bs4";
   }
 
 }
