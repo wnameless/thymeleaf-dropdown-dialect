@@ -15,12 +15,14 @@
  */
 package com.github.wnameless.thymeleaf.ext;
 
+import java.util.List;
 import java.util.Map;
 
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.model.AttributeValueQuotes;
 import org.thymeleaf.model.IModel;
 import org.thymeleaf.model.IModelFactory;
+import org.thymeleaf.model.ITemplateEvent;
 import org.thymeleaf.processor.element.AbstractElementModelProcessor;
 import org.thymeleaf.processor.element.IElementModelStructureHandler;
 import org.thymeleaf.templatemode.TemplateMode;
@@ -41,12 +43,13 @@ public class Bootstrap3DropdownItemProcessor
 
     Map<String, String> attr =
         ThymeleafDialectUtils.getAttributeMap(model.get(0));
+    List<ITemplateEvent> events = ThymeleafDialectUtils.getEvents(model);
 
     model.reset();
     model.add(modelFactory.createOpenElementTag("li"));
     model.add(modelFactory.createOpenElementTag("a", attr,
         AttributeValueQuotes.DOUBLE, false));
-    ThymeleafDialectUtils.getEvents(model).forEach(event -> model.add(event));
+    events.forEach(event -> model.add(event));
     model.add(modelFactory.createCloseElementTag("a"));
     model.add(modelFactory.createCloseElementTag("li"));
   }
