@@ -44,7 +44,7 @@ public class Bootstrap4DropdownHeaderProcessor
     Map<String, String> attr =
         ThymeleafDialectUtils.getAttributeMap(model.get(0));
     ThymeleafDialectUtils.mergeAttributeValue(attr, "class", "dropdown-header");
-    List<ITemplateEvent> events = ThymeleafDialectUtils.getEvents(model);
+    List<ITemplateEvent> events = ThymeleafDialectUtils.getChildEvents(model);
 
     model.reset();
     model.add(modelFactory.createOpenElementTag("h6", attr,

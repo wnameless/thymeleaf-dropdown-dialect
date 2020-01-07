@@ -30,7 +30,7 @@ public class Bootstrap3DropdownDialect extends AbstractProcessorDialect {
   public Set<IProcessor> getProcessors(final String dialectPrefix) {
     final Set<IProcessor> processors = new HashSet<IProcessor>();
     processors.add(new Bootstrap3DropdownProcessor(dialectPrefix, true));
-    processors.add(new Bootstrap3DropdownItemProcessor(dialectPrefix, true));
+    processors.add(new Bootstrap3DropupProcessor(dialectPrefix, true));
     processors.add(new Bootstrap3DropdownHeaderProcessor(dialectPrefix, true));
     processors.add(new Bootstrap3DropdownDividerProcessor(dialectPrefix, true));
     return processors;

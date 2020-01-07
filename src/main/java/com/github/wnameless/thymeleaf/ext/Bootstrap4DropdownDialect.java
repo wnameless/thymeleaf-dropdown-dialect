@@ -30,7 +30,9 @@ public class Bootstrap4DropdownDialect extends AbstractProcessorDialect {
   public Set<IProcessor> getProcessors(final String dialectPrefix) {
     final Set<IProcessor> processors = new HashSet<IProcessor>();
     processors.add(new Bootstrap4DropdownProcessor(dialectPrefix, true));
-    processors.add(new Bootstrap4DropdownItemProcessor(dialectPrefix, true));
+    processors.add(new Bootstrap4DropupProcessor(dialectPrefix, true));
+    processors.add(new Bootstrap4DroprightProcessor(dialectPrefix, true));
+    processors.add(new Bootstrap4DropleftProcessor(dialectPrefix, true));
     processors.add(new Bootstrap4DropdownHeaderProcessor(dialectPrefix, true));
     processors.add(new Bootstrap4DropdownDividerProcessor(dialectPrefix, true));
     return processors;

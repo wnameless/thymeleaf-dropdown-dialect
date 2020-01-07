@@ -16,6 +16,7 @@
 package com.github.wnameless.thymeleaf.ext;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,8 +44,11 @@ public final class ThymeleafDialectUtils {
       Map<String, String> attrbuteMap, String attributeName,
       String attributeValue) {
     if (attrbuteMap.containsKey(attributeName)) {
-      attrbuteMap.put(attributeName,
-          attrbuteMap.get(attributeName) + " " + attributeValue);
+      if (!Arrays.asList(attrbuteMap.get(attributeName).split("\\s+"))
+          .contains(attributeValue)) {
+        attrbuteMap.put(attributeName,
+            attrbuteMap.get(attributeName) + " " + attributeValue);
+      }
     } else {
       attrbuteMap.put(attributeName, attributeValue);
     }
@@ -99,10 +103,20 @@ public final class ThymeleafDialectUtils {
     return attr;
   }
 
-  public static List<ITemplateEvent> getEvents(IModel model) {
+  public static List<ITemplateEvent> getChildEvents(IModel model) {
     List<ITemplateEvent> events = new ArrayList<>();
 
     for (int i = 1; i < model.size() - 1; i++) {
+      events.add(model.get(i));
+    }
+
+    return events;
+  }
+
+  public static List<ITemplateEvent> getEvents(IModel model) {
+    List<ITemplateEvent> events = new ArrayList<>();
+
+    for (int i = 0; i < model.size(); i++) {
       events.add(model.get(i));
     }
 

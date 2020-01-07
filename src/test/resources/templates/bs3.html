@@ -27,12 +27,18 @@
 
 <body>
 	<div class="container">
-		<bs3:dropdown bs3:dropright class="btn-lg" bs:text=" abc" bs:icon="fas fa-bars" id="abc">
-			<bs3:dropdown-header>Test</bs3:dropdown-header>
-			<bs3:dropdown-item class="test" href="#" onclick="option('aa')">A</bs3:dropdown-item>
-			<bs3:dropdown-divider></bs3:dropdown-divider>
-			<bs3:dropdown-item href="#" onclick="option('bb')">B</bs3:dropdown-item>
+		<bs3:dropdown bs:text=" abc " bs:icon="fas fa-bars" bs:icon-append="fas fa-bars">
+			<a class="test" href="#" onclick="option('aa')">A</a>
+			<a href="#" onclick="option('bb')">
+				<span class="fas fa-cog"></span> B
+			</a>
 		</bs3:dropdown>
+		<bs3:dropup bs:text=" abc " bs:icon="fas fa-bars" bs:icon-append="fas fa-bars">
+			<a class="test" href="#" onclick="option('aa')">A</a>
+			<a href="#" onclick="option('bb')">
+				<span class="fas fa-cog"></span> B
+			</a>
+		</bs3:dropup>
 	</div>
 
 

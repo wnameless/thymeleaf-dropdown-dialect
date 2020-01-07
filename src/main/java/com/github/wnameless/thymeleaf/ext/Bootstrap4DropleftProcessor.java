@@ -27,11 +27,11 @@ import org.thymeleaf.processor.element.AbstractElementModelProcessor;
 import org.thymeleaf.processor.element.IElementModelStructureHandler;
 import org.thymeleaf.templatemode.TemplateMode;
 
-public class Bootstrap4DropdownProcessor extends AbstractElementModelProcessor {
+public class Bootstrap4DropleftProcessor extends AbstractElementModelProcessor {
 
-  public Bootstrap4DropdownProcessor(String dialectPrefix,
+  public Bootstrap4DropleftProcessor(String dialectPrefix,
       boolean prefixElementName) {
-    super(TemplateMode.HTML, dialectPrefix, "dropdown", prefixElementName, null,
+    super(TemplateMode.HTML, dialectPrefix, "dropleft", prefixElementName, null,
         false, 1000);
   }
 
@@ -42,12 +42,6 @@ public class Bootstrap4DropdownProcessor extends AbstractElementModelProcessor {
 
     Map<String, String> originAttr =
         ThymeleafDialectUtils.getAttributeMap(model.get(0));
-    boolean bsDropup = originAttr.containsKey("bs:dropup");
-    originAttr.remove("bs:dropup");
-    boolean bsDropright = originAttr.containsKey("bs:dropright");
-    originAttr.remove("bs:dropright");
-    boolean bsDropleft = originAttr.containsKey("bs:dropleft");
-    originAttr.remove("bs:dropleft");
     String bsText = originAttr.get("bs:text");
     originAttr.remove("bs:text");
     String bsIcon = originAttr.get("bs:icon");
@@ -68,12 +62,8 @@ public class Bootstrap4DropdownProcessor extends AbstractElementModelProcessor {
         "btn btn-default dropdown-toggle");
     id = attr.get("id");
 
-    String divClass = "dropdown";
-    if (bsDropup) divClass = "dropup";
-    if (bsDropright) divClass = "dropright";
-    if (bsDropleft) divClass = "dropleft";
     model.replace(0,
-        modelFactory.createOpenElementTag("div", "class", divClass));
+        modelFactory.createOpenElementTag("div", "class", "dropleft"));
 
     int idx = 1;
     model.insert(idx++, modelFactory.createOpenElementTag("button", attr,

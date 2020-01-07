@@ -20,8 +20,10 @@ import java.util.Map;
 
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.model.AttributeValueQuotes;
+import org.thymeleaf.model.ICloseElementTag;
 import org.thymeleaf.model.IModel;
 import org.thymeleaf.model.IModelFactory;
+import org.thymeleaf.model.IOpenElementTag;
 import org.thymeleaf.processor.element.AbstractElementModelProcessor;
 import org.thymeleaf.processor.element.IElementModelStructureHandler;
 import org.thymeleaf.templatemode.TemplateMode;
@@ -43,14 +45,12 @@ public class Bootstrap3DropdownProcessor extends AbstractElementModelProcessor {
         ThymeleafDialectUtils.getAttributeMap(model.get(0));
     boolean bsDropup = originAttr.containsKey("bs:dropup");
     originAttr.remove("bs:dropup");
-    boolean bsDropright = originAttr.containsKey("bs:dropright");
-    originAttr.remove("bs:dropright");
-    boolean bsDropleft = originAttr.containsKey("bs:dropleft");
-    originAttr.remove("bs:dropleft");
     String bsText = originAttr.get("bs:text");
     originAttr.remove("bs:text");
     String bsIcon = originAttr.get("bs:icon");
     originAttr.remove("bs:icon");
+    String bsIconAppend = originAttr.get("bs:icon-append");
+    originAttr.remove("bs:icon-append");
 
     Map<String, String> attr = new LinkedHashMap<>();
     String id;
@@ -67,8 +67,6 @@ public class Bootstrap3DropdownProcessor extends AbstractElementModelProcessor {
 
     String divClass = "dropdown";
     if (bsDropup) divClass = "dropup";
-    if (bsDropright) divClass = "dropright";
-    if (bsDropleft) divClass = "dropleft";
     model.replace(0,
         modelFactory.createOpenElementTag("div", "class", divClass));
 
@@ -85,7 +83,12 @@ public class Bootstrap3DropdownProcessor extends AbstractElementModelProcessor {
       model.insert(idx++, modelFactory.createText(bsText));
     }
 
-    if (bsIcon == null && bsText == null) {
+    if (bsIconAppend != null) {
+      model.insert(idx++, modelFactory.createStandaloneElementTag("span",
+          "class", bsIconAppend, false, false));
+    }
+
+    if (bsIcon == null && bsText == null && bsIconAppend == null) {
       attr = new LinkedHashMap<>();
       attr.put("width", "16");
       attr.put("height", "16");
@@ -108,6 +111,23 @@ public class Bootstrap3DropdownProcessor extends AbstractElementModelProcessor {
 
     model.insert(model.size() - 1, modelFactory.createCloseElementTag("ul"));
     model.replace(model.size() - 1, modelFactory.createCloseElementTag("div"));
+
+    for (int i = 1; i < model.size() - 1; i++) {
+      if (model.get(i) instanceof IOpenElementTag) {
+        IOpenElementTag openTag = (IOpenElementTag) model.get(i);
+        if (openTag.getElementCompleteName().equals("a")) {
+          model.insert(i, modelFactory.createOpenElementTag("li"));
+          i++;
+        }
+      }
+      if (model.get(i) instanceof ICloseElementTag) {
+        ICloseElementTag closeTag = (ICloseElementTag) model.get(i);
+        if (closeTag.getElementCompleteName().equals("a")) {
+          model.insert(++i, modelFactory.createCloseElementTag("li"));
+          i++;
+        }
+      }
+    }
   }
 
 }

@@ -22,12 +22,30 @@
 
 <body>
 	<div class="container">
-		<bs4:dropdown bs4:dropright class="btn-lg" bs:text=" abc" bs:icon="fas fa-bars" id="abc">
-			<bs4:dropdown-header>Test</bs4:dropdown-header>
-			<bs4:dropdown-item class="test" href="#" onclick="option('aa')">A</bs4:dropdown-item>
-			<bs4:dropdown-divider></bs4:dropdown-divider>
-			<bs4:dropdown-item href="#" onclick="option('bb')">B</bs4:dropdown-item>
+		<bs4:dropdown bs:text=" abc " bs:icon="fas fa-bars" bs:icon-append="fas fa-bars">
+			<a class="test" href="#" onclick="option('aa')">A</a>
+			<a href="#" onclick="option('bb')">
+				<span class="fas fa-cog"></span> B
+			</a>
 		</bs4:dropdown>
+		<bs4:dropup bs:text=" abc " bs:icon="fas fa-bars" bs:icon-append="fas fa-bars">
+			<a class="test" href="#" onclick="option('aa')">A</a>
+			<a href="#" onclick="option('bb')">
+				<span class="fas fa-cog"></span> B
+			</a>
+		</bs4:dropup>
+		<bs4:dropright bs:text=" abc " bs:icon="fas fa-bars" bs:icon-append="fas fa-bars">
+			<a class="test" href="#" onclick="option('aa')">A</a>
+			<a href="#" onclick="option('bb')">
+				<span class="fas fa-cog"></span> B
+			</a>
+		</bs4:dropright>
+		<bs4:dropleft bs:text=" abc " bs:icon="fas fa-bars" bs:icon-append="fas fa-bars">
+			<a class="test" href="#" onclick="option('aa')">A</a>
+			<a href="#" onclick="option('bb')">
+				<span class="fas fa-cog"></span> B
+			</a>
+		</bs4:dropleft>
 	</div>
 
 

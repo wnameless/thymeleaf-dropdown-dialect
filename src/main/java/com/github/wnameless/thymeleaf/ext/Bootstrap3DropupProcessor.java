@@ -20,6 +20,7 @@ import java.util.Map;
 
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.model.AttributeValueQuotes;
+import org.thymeleaf.model.ICloseElementTag;
 import org.thymeleaf.model.IModel;
 import org.thymeleaf.model.IModelFactory;
 import org.thymeleaf.model.IOpenElementTag;
@@ -27,11 +28,11 @@ import org.thymeleaf.processor.element.AbstractElementModelProcessor;
 import org.thymeleaf.processor.element.IElementModelStructureHandler;
 import org.thymeleaf.templatemode.TemplateMode;
 
-public class Bootstrap4DropdownProcessor extends AbstractElementModelProcessor {
+public class Bootstrap3DropupProcessor extends AbstractElementModelProcessor {
 
-  public Bootstrap4DropdownProcessor(String dialectPrefix,
+  public Bootstrap3DropupProcessor(String dialectPrefix,
       boolean prefixElementName) {
-    super(TemplateMode.HTML, dialectPrefix, "dropdown", prefixElementName, null,
+    super(TemplateMode.HTML, dialectPrefix, "dropup", prefixElementName, null,
         false, 1000);
   }
 
@@ -42,12 +43,6 @@ public class Bootstrap4DropdownProcessor extends AbstractElementModelProcessor {
 
     Map<String, String> originAttr =
         ThymeleafDialectUtils.getAttributeMap(model.get(0));
-    boolean bsDropup = originAttr.containsKey("bs:dropup");
-    originAttr.remove("bs:dropup");
-    boolean bsDropright = originAttr.containsKey("bs:dropright");
-    originAttr.remove("bs:dropright");
-    boolean bsDropleft = originAttr.containsKey("bs:dropleft");
-    originAttr.remove("bs:dropleft");
     String bsText = originAttr.get("bs:text");
     originAttr.remove("bs:text");
     String bsIcon = originAttr.get("bs:icon");
@@ -68,12 +63,8 @@ public class Bootstrap4DropdownProcessor extends AbstractElementModelProcessor {
         "btn btn-default dropdown-toggle");
     id = attr.get("id");
 
-    String divClass = "dropdown";
-    if (bsDropup) divClass = "dropup";
-    if (bsDropright) divClass = "dropright";
-    if (bsDropleft) divClass = "dropleft";
     model.replace(0,
-        modelFactory.createOpenElementTag("div", "class", divClass));
+        modelFactory.createOpenElementTag("div", "class", "dropup"));
 
     int idx = 1;
     model.insert(idx++, modelFactory.createOpenElementTag("button", attr,
@@ -103,26 +94,33 @@ public class Bootstrap4DropdownProcessor extends AbstractElementModelProcessor {
           AttributeValueQuotes.DOUBLE, false, true));
     }
 
+    model.insert(idx++, modelFactory.createStandaloneElementTag("span", "class",
+        "caret", false, false));
+
     model.insert(idx++, modelFactory.createCloseElementTag("button"));
 
     attr = new LinkedHashMap<>();
     attr.put("class", "dropdown-menu");
     attr.put("aria-labelledby", id);
-    model.insert(idx++, modelFactory.createOpenElementTag("div", attr,
+    model.insert(idx++, modelFactory.createOpenElementTag("ul", attr,
         AttributeValueQuotes.DOUBLE, false));
 
-    model.insert(model.size() - 1, modelFactory.createCloseElementTag("div"));
+    model.insert(model.size() - 1, modelFactory.createCloseElementTag("ul"));
     model.replace(model.size() - 1, modelFactory.createCloseElementTag("div"));
 
     for (int i = 1; i < model.size() - 1; i++) {
       if (model.get(i) instanceof IOpenElementTag) {
         IOpenElementTag openTag = (IOpenElementTag) model.get(i);
         if (openTag.getElementCompleteName().equals("a")) {
-          model.replace(i,
-              modelFactory.createOpenElementTag("a",
-                  ThymeleafDialectUtils.mergeAttributeValue(
-                      openTag.getAttributeMap(), "class", "dropdown-item"),
-                  AttributeValueQuotes.DOUBLE, false));
+          model.insert(i, modelFactory.createOpenElementTag("li"));
+          i++;
+        }
+      }
+      if (model.get(i) instanceof ICloseElementTag) {
+        ICloseElementTag closeTag = (ICloseElementTag) model.get(i);
+        if (closeTag.getElementCompleteName().equals("a")) {
+          model.insert(++i, modelFactory.createCloseElementTag("li"));
+          i++;
         }
       }
     }
