@@ -31,6 +31,8 @@ public class Bootstrap3DropdownDialect extends AbstractProcessorDialect {
     final Set<IProcessor> processors = new HashSet<IProcessor>();
     processors.add(new Bootstrap3DropdownProcessor(dialectPrefix, true));
     processors.add(new Bootstrap3DropdownItemProcessor(dialectPrefix, true));
+    processors.add(new Bootstrap3DropdownHeaderProcessor(dialectPrefix, true));
+    processors.add(new Bootstrap3DropdownDividerProcessor(dialectPrefix, true));
     return processors;
   }
 

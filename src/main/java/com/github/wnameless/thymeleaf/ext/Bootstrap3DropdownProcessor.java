@@ -61,12 +61,8 @@ public class Bootstrap3DropdownProcessor extends AbstractElementModelProcessor {
     attr.put("id", "dropdownMenu");
 
     attr.putAll(originAttr);
-    if (attr.containsKey("class")) {
-      attr.put("class",
-          "btn btn-default dropdown-toggle" + " " + attr.get("class"));
-    } else {
-      attr.put("class", "btn btn-default dropdown-toggle");
-    }
+    ThymeleafDialectUtils.mergeAttributeValue(attr, "class",
+        "btn btn-default dropdown-toggle");
     id = attr.get("id");
 
     String divClass = "dropdown";

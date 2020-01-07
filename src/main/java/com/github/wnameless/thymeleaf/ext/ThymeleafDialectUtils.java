@@ -39,6 +39,19 @@ public final class ThymeleafDialectUtils {
 
   private ThymeleafDialectUtils() {}
 
+  public static Map<String, String> mergeAttributeValue(
+      Map<String, String> attrbuteMap, String attributeName,
+      String attributeValue) {
+    if (attrbuteMap.containsKey(attributeName)) {
+      attrbuteMap.put(attributeName,
+          attrbuteMap.get(attributeName) + " " + attributeValue);
+    } else {
+      attrbuteMap.put(attributeName, attributeValue);
+    }
+
+    return attrbuteMap;
+  }
+
   public static Map<String, String> getAttributeMap(ITemplateEvent event) {
     final Map<String, String> attr = new LinkedHashMap<>();
 
