@@ -27,12 +27,18 @@
 
 <body>
 	<div class="container">
+		<hr>
 		<bs3:dropdown>
+			<a bs3:dropdown-toggle>TEST</a>
+			<bs3:dropdown-header>Header</bs3:dropdown-header>
+			<a href="#" onclick="option('Toggle')">Toggle</a>
 			<a class="test" href="#" onclick="option('aa')">A</a>
+			<bs3:dropdown-divider></bs3:dropdown-divider>
 			<a href="#" onclick="option('bb')">
 				<span class="fas fa-cog"></span> B
 			</a>
 		</bs3:dropdown>
+		<hr>
 		<bs3:dropup bs:text=" abc " bs:icon="fas fa-bars" bs:icon-append="fas fa-bars">
 			<a class="test" href="#" onclick="option('aa')">A</a>
 			<a href="#" onclick="option('bb')">

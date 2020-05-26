@@ -23,7 +23,9 @@
 <body>
 	<div class="container">
 		<bs4:dropdown>
+			<bs4:dropdown-header>Header</bs4:dropdown-header>
 			<a class="test" href="#" onclick="option('aa')">A</a>
+			<bs4:dropdown-divider></bs4:dropdown-divider>
 			<a href="#" onclick="option('bb')">
 				<span class="fas fa-cog"></span> B
 			</a>
@@ -47,7 +49,6 @@
 			</a>
 		</bs4:dropleft>
 	</div>
-
 
 	<script>
 		var option = (link) => {
