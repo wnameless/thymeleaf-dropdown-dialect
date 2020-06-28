@@ -43,6 +43,8 @@ public final class ThymeleafDialectUtils {
   public static Map<String, String> mergeAttributeValue(
       Map<String, String> attrbuteMap, String attributeName,
       String attributeValue) {
+    attrbuteMap = new LinkedHashMap<>(attrbuteMap);
+
     if (attrbuteMap.containsKey(attributeName)) {
       if (!Arrays.asList(attrbuteMap.get(attributeName).split("\\s+"))
           .contains(attributeValue)) {
