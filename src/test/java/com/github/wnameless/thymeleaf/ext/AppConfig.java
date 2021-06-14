@@ -31,4 +31,9 @@ public class AppConfig {
     return new Bootstrap4DropdownDialect();
   }
 
+  @Bean
+  public Bootstrap5DropdownDialect bootstrap5DropdownDialect() {
+    return new Bootstrap5DropdownDialect();
+  }
+
 }

@@ -32,4 +32,9 @@ public class ThymeleafController {
     return "bs4";
   }
 
+  @GetMapping("/bs5")
+  String bs5(Model model) {
+    return "bs5";
+  }
+
 }

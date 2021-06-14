@@ -22,33 +22,43 @@
 
 <body>
 	<div class="container">
-		<bs4:dropdown>
-			<bs4:dropdown-header>Header</bs4:dropdown-header>
-			<a class="test" href="#" onclick="option('aa')">A</a>
-			<bs4:dropdown-divider></bs4:dropdown-divider>
-			<a href="#" onclick="option('bb')">
-				<span class="fas fa-cog"></span> B
-			</a>
-		</bs4:dropdown>
-		<bs4:dropup bs:text=" abc " bs:icon="fas fa-bars" bs:icon-append="fas fa-bars">
-			<a class="test" href="#" onclick="option('aa')">A</a>
-			<a href="#" onclick="option('bb')">
-				<span class="fas fa-cog"></span> B
-			</a>
-		</bs4:dropup>
-		<bs4:dropright bs:text=" abc " bs:icon="fas fa-bars" bs:icon-append="fas fa-bars">
-			<a class="test" href="#" onclick="option('aa')">A</a>
-			<a href="#" onclick="option('bb')">
-				<span class="fas fa-cog"></span> B
-			</a>
-		</bs4:dropright>
-		<bs4:dropleft bs:text=" abc " bs:icon="fas fa-bars" bs:icon-append="fas fa-bars">
-			<a class="test" href="#" onclick="option('aa')">A</a>
-			<a href="#" onclick="option('bb')">
-				<span class="fas fa-cog"></span> B
-			</a>
-		</bs4:dropleft>
-	</div>
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-auto">
+                <bs4:dropdown>
+                    <bs4:dropdown-header>Header</bs4:dropdown-header>
+                    <a class="test" href="#" onclick="option('aa')">A</a>
+                    <bs4:dropdown-divider></bs4:dropdown-divider>
+                    <a href="#" onclick="option('bb')">
+                        <span class="fas fa-cog"></span> B
+                    </a>
+                </bs4:dropdown>
+            </div>
+            <div class="col-auto">
+                <bs4:dropright bs:text=" abc " bs:icon="fas fa-bars" bs:icon-append="fas fa-bars">
+                    <a class="test" href="#" onclick="option('aa')">A</a>
+                    <a href="#" onclick="option('bb')">
+                        <span class="fas fa-cog"></span> B
+                    </a>
+                </bs4:dropright>
+            </div>
+            <div class="col-auto">
+                <bs4:dropleft bs:text=" abc " bs:icon="fas fa-bars" bs:icon-append="fas fa-bars">
+                    <a class="test" href="#" onclick="option('aa')">A</a>
+                    <a href="#" onclick="option('bb')">
+                        <span class="fas fa-cog"></span> B
+                    </a>
+                </bs4:dropleft>
+            </div>
+            <div class="col-auto">
+                <bs4:dropup bs:text=" abc " bs:icon="fas fa-bars" bs:icon-append="fas fa-bars">
+                    <a class="test" href="#" onclick="option('aa')">A</a>
+                    <a href="#" onclick="option('bb')">
+                        <span class="fas fa-cog"></span> B
+                    </a>
+                </bs4:dropup>
+            </div>
+        </div>
+    </div>
 
 	<script>
 		var option = (link) => {

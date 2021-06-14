@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <title>Thymeleaf</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-auto">
+                <bs5:dropdown>
+                    <bs5:dropdown-header>Header</bs5:dropdown-header>
+                    <a class="test" href="#" onclick="option('aa')">A</a>
+                    <bs5:dropdown-divider></bs5:dropdown-divider>
+                    <a href="#" onclick="option('bb')">
+                        <span class="fas fa-cog"></span> B
+                    </a>
+                </bs5:dropdown>
+            </div>
+            <div class="col-auto">
+                <bs5:dropright bs:text=" abc " bs:icon="fas fa-bars" bs:icon-append="fas fa-bars">
+                    <a class="test" href="#" onclick="option('aa')">A</a>
+                    <a href="#" onclick="option('bb')">
+                        <span class="fas fa-cog"></span> B
+                    </a>
+                </bs5:dropright>
+            </div>
+            <div class="col-auto">
+                <bs5:dropleft bs:text=" abc " bs:icon="fas fa-bars" bs:icon-append="fas fa-bars">
+                    <a class="test" href="#" onclick="option('aa')">A</a>
+                    <a href="#" onclick="option('bb')">
+                        <span class="fas fa-cog"></span> B
+                    </a>
+                </bs5:dropleft>
+            </div>
+            <div class="col-auto">
+                <bs5:dropup bs:text=" abc " bs:icon="fas fa-bars" bs:icon-append="fas fa-bars">
+                    <a class="test" href="#" onclick="option('aa')">A</a>
+                    <a href="#" onclick="option('bb')">
+                        <span class="fas fa-cog"></span> B
+                    </a>
+                </bs5:dropup>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var option = (link) => {
+            console.log(link);
+        }
+    </script>
+</body>
+
+</html>
