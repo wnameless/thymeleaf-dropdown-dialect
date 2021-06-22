@@ -27,6 +27,7 @@ public class Bootstrap5DropdownDialect extends AbstractProcessorDialect {
     super("Boostrap 5 Dropdown Dialect", "bs5", 1000);
   }
 
+  @Override
   public Set<IProcessor> getProcessors(final String dialectPrefix) {
     final Set<IProcessor> processors = new HashSet<IProcessor>();
     processors.add(new Bootstrap5DropdownProcessor(dialectPrefix, true));
